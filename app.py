@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 from routes.chat import router as chat_router
+from routes.mood import router as mood_router
 from services.config import settings
 from services.logging_service import configure_logging
 
@@ -14,6 +15,7 @@ app = FastAPI(
 
 # Default docs are served at /docs and /redoc
 app.include_router(chat_router, prefix="/api", tags=["chat"])
+app.include_router(mood_router, prefix="/api", tags=["mood"])
 
 
 @app.get("/health")

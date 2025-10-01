@@ -1,3 +1,8 @@
 [
-  "tests/test_health.py::test_health"
+  "tests/test_health.py::test_health",
+  "tests/test_mood.py::test_get_mood_history",
+  "tests/test_mood.py::test_log_and_get_mood_integration",
+  "tests/test_mood.py::test_log_mood",
+  "tests/test_mood.py::test_log_mood_without_notes",
+  "tests/test_mood.py::test_mood_level_validation"
 ]
