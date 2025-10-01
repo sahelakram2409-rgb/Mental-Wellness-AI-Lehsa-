@@ -37,11 +37,7 @@ jobs:
         run: ruff check .
 
       - name: Prepare results directory
-        run: |
-          python - << 'PY'
-          import os
-          os.makedirs('test-results', exist_ok=True)
-          PY
+        run: python -c "import os; os.makedirs('test-results', exist_ok=True)"
 
       - name: Set PYTHONPATH (Unix)
         if: runner.os != 'Windows'
@@ -51,7 +47,8 @@ jobs:
         if: runner.os == 'Windows'
         run: echo "PYTHONPATH=$env:PYTHONPATH;$(pwd)" >> $env:GITHUB_ENV
 
-      - name: Debug working directory and files
+      - name: Debug working directory and files (Unix)
+        if: runner.os != 'Windows'
         run: |
           echo "Current working directory: $(pwd)"
           echo "Contents of current directory:"
@@ -64,6 +61,21 @@ jobs:
           ls -la app.py
           echo "Checking if conftest.py exists:"
           ls -la conftest.py
+
+      - name: Debug working directory and files (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          echo "Current working directory: $pwd"
+          echo "Contents of current directory:"
+          Get-ChildItem -Force
+          echo "Contents of tests directory:"
+          Get-ChildItem tests/ -Force
+          echo "Python path:"
+          python -c "import sys; [print(p) for p in sys.path]"
+          echo "Checking if app.py exists:"
+          Get-ChildItem app.py -Force
+          echo "Checking if conftest.py exists:"
+          Get-ChildItem conftest.py -Force
 
       - name: Pytest (with JUnit XML and coverage)
         run: |
