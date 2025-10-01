@@ -78,14 +78,7 @@ jobs:
           Get-ChildItem conftest.py -Force
 
       - name: Pytest (with JUnit XML and coverage)
-        run: |
-          python -m pytest -q \
-            --junitxml=test-results/pytest.xml \
-            --cov=. \
-            --cov-report=term-missing:skip-covered \
-            --cov-report=xml:coverage.xml \
-            --cov-report=html \
-            --cov-fail-under=70
+        run: python -m pytest -q --junitxml=test-results/pytest.xml --cov=. --cov-report=term-missing:skip-covered --cov-report=xml:coverage.xml --cov-report=html --cov-fail-under=70
 
       - name: Upload JUnit report
         if: always()
