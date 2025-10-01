@@ -51,9 +51,23 @@ jobs:
         if: runner.os == 'Windows'
         run: echo "PYTHONPATH=$env:PYTHONPATH;$(pwd)" >> $env:GITHUB_ENV
 
+      - name: Debug working directory and files
+        run: |
+          echo "Current working directory: $(pwd)"
+          echo "Contents of current directory:"
+          ls -la
+          echo "Contents of tests directory:"
+          ls -la tests/
+          echo "Python path:"
+          python -c "import sys; [print(p) for p in sys.path]"
+          echo "Checking if app.py exists:"
+          ls -la app.py
+          echo "Checking if conftest.py exists:"
+          ls -la conftest.py
+
       - name: Pytest (with JUnit XML and coverage)
         run: |
-          pytest -q \
+          python -m pytest -q \
             --junitxml=test-results/pytest.xml \
             --cov=. \
             --cov-report=term-missing:skip-covered \
