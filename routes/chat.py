@@ -1,12 +1,14 @@
 from fastapi import APIRouter, HTTPException
-from models.schemas import ChatRequest, ChatResponse
+
 from agents.ai_agent import MentalWellnessAgent
+from models.schemas import ChatRequest, ChatResponse
 from services.config import settings
 
 router = APIRouter()
 
 # Instantiate a mocked agent for now; can be swapped with OpenAI/Groq later
 agent = MentalWellnessAgent(provider=settings.MODEL_PROVIDER, model=settings.MODEL_NAME)
+
 
 @router.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest) -> ChatResponse:
