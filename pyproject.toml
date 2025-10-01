@@ -3,6 +3,8 @@ line-length = 100
 
 [tool.ruff]
 line-length = 100
+
+[tool.ruff.lint]
 # Keep line-length concerns with Black; ignore E501 in Ruff.
 ignore = ["E501"]
 # Enable basic import sorting in addition to default E/F.
