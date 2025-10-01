@@ -1,10 +1,15 @@
 import sys
+import os
 from pathlib import Path
-from fastapi.testclient import TestClient
 
 # Add project root to Python path
-sys.path.append(str(Path(__file__).resolve().parent.parent))
+project_root = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(project_root))
 
+# Ensure we're working from the project root
+os.chdir(project_root)
+
+from fastapi.testclient import TestClient
 from app import app
 
 client = TestClient(app)

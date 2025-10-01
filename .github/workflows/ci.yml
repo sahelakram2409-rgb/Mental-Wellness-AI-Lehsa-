@@ -43,6 +43,14 @@ jobs:
           os.makedirs('test-results', exist_ok=True)
           PY
 
+      - name: Set PYTHONPATH (Unix)
+        if: runner.os != 'Windows'
+        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
+
+      - name: Set PYTHONPATH (Windows)
+        if: runner.os == 'Windows'
+        run: echo "PYTHONPATH=$env:PYTHONPATH;$(pwd)" >> $env:GITHUB_ENV
+
       - name: Pytest (with JUnit XML and coverage)
         run: |
           pytest -q \
