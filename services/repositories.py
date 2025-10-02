@@ -110,6 +110,21 @@ class MoodRepository:
         
         return query.all()
     
+    def get_all_mood_entries(self, days_back: int = 7, limit: Optional[int] = None) -> List[MoodEntry]:
+        """Get mood entries for all users within the last N days."""
+        cutoff_date = datetime.utcnow() - timedelta(days=days_back)
+        
+        query = (
+            self.session.query(MoodEntry)
+            .filter(MoodEntry.timestamp >= cutoff_date)
+            .order_by(MoodEntry.timestamp)
+        )
+        
+        if limit:
+            query = query.limit(limit)
+        
+        return query.all()
+    
     def get_mood_entry_by_id(self, mood_id: int) -> Optional[MoodEntry]:
         """Get mood entry by ID."""
         return self.session.query(MoodEntry).filter(MoodEntry.id == mood_id).first()

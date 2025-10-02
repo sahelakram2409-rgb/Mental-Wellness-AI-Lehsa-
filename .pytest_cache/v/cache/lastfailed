@@ -1,4 +1,5 @@
 {
-  "tests/test_mood.py::test_get_mood_history": true,
-  "tests/test_mood.py::test_log_and_get_mood_integration": true
+  "tests/test_mood_aware_chat.py::test_chat_with_improving_mood_trend": true,
+  "tests/test_mood_aware_chat.py::test_chat_with_declining_mood_trend": true,
+  "tests/test_mood_aware_chat.py::test_full_mood_aware_workflow": true
 }

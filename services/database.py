@@ -132,6 +132,10 @@ def get_db() -> Generator[Session, None, None]:
     session = db_config.SessionLocal()
     try:
         yield session
+        session.commit()  # Ensure changes are committed
+    except Exception as e:
+        session.rollback()
+        raise
     finally:
         session.close()
 

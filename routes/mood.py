@@ -40,8 +40,8 @@ async def get_mood_history(user_id: Optional[str] = None, days_back: int = 7, db
         mood_schemas = [convert_mood_entry_to_schema(mood) for mood in db_moods]
         return MoodResponse(user_id=user_id, moods=mood_schemas)
     else:
-        # For backward compatibility, return anonymous_user data if no user_id provided
-        db_moods = mood_repo.get_mood_entries_by_user("anonymous_user", days_back=days_back)
+        # Return ALL users' moods if no user_id provided (for backward compatibility)
+        db_moods = mood_repo.get_all_mood_entries(days_back=days_back)
         mood_schemas = [convert_mood_entry_to_schema(mood) for mood in db_moods]
         return MoodResponse(user_id=None, moods=mood_schemas)
 
