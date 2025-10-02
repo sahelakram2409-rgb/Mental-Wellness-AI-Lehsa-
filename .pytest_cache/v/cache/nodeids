@@ -4,5 +4,15 @@
   "tests/test_mood.py::test_log_and_get_mood_integration",
   "tests/test_mood.py::test_log_mood",
   "tests/test_mood.py::test_log_mood_without_notes",
-  "tests/test_mood.py::test_mood_level_validation"
+  "tests/test_mood.py::test_mood_level_validation",
+  "tests/test_mood_aware_chat.py::test_chat_empty_message_still_fails",
+  "tests/test_mood_aware_chat.py::test_chat_neutral_mood_context",
+  "tests/test_mood_aware_chat.py::test_chat_with_declining_mood_trend",
+  "tests/test_mood_aware_chat.py::test_chat_with_improving_mood_trend",
+  "tests/test_mood_aware_chat.py::test_chat_with_low_mood_context",
+  "tests/test_mood_aware_chat.py::test_chat_with_positive_mood_context",
+  "tests/test_mood_aware_chat.py::test_chat_without_mood_context",
+  "tests/test_mood_aware_chat.py::test_chat_without_user_id",
+  "tests/test_mood_aware_chat.py::test_full_mood_aware_workflow",
+  "tests/test_mood_aware_chat.py::test_mood_context_service_directly"
 ]
