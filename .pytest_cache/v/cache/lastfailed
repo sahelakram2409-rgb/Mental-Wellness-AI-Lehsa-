@@ -1,1 +1,4 @@
-{}
+{
+  "tests/test_mood.py::test_get_mood_history": true,
+  "tests/test_mood.py::test_log_and_get_mood_integration": true
+}
